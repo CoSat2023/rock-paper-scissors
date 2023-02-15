@@ -17,7 +17,7 @@ function getPlayerChoice() {
 }
 // Play a round of RPS
 
-function playRound(playerSelection, computerSelection) {
+/* function playRound(playerSelection, computerSelection) {
     let winMessage = `Let's go!!! You won. ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)} beats ${computerSelection}.`;
     let tieMessage = `Tie game!`;
     let loseMessage = `Oh no, you lost this round. ${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)} beats ${playerSelection}.`;
@@ -41,12 +41,43 @@ function playRound(playerSelection, computerSelection) {
     }
     // console.log(message);
     return message;
+} */
+
+function playRound(playerSelection, computerSelection) {
+    let result;
+    if (playerSelection === "" || playerSelection === null) {
+        result = "Canceled";
+    } else if (playerSelection === computerSelection) {
+        result = "tie";
+    } else if (playerSelection === "rock" && computerSelection === "paper") {
+        result = "lose";
+    } else if (playerSelection === "rock" && computerSelection === "scissors") {
+        result = "win";
+    } else if (playerSelection === "paper" && computerSelection === "rock") {
+        result = "win";
+    } else if (playerSelection === "paper" && computerSelection === "scissors") {
+        result = "lose";
+    } else if (playerSelection === "scissors" && computerSelection === "paper") {
+        result = "win";
+    } else if (playerSelection === "scissors" && computerSelection === "rock") {
+        result = "lose";
+    } else {
+        result = "Please choose from the available options.";
+    }
+
+    console.log(`Player selection: ${playerSelection}`);
+    console.log(`Computer selection: ${computerSelection}`);
+    console.log(`Result: ${result}`);
+    return result;
 }
 
-function game() {
+/* function game() {
    let playerScore = 0;
    let computerScore = 0; 
+} */
 
-}
-game();
-// console.log(playRound(getPlayerChoice(),getComputerChoice()));
+/* game();
+console.log(playRound(getPlayerChoice(),getComputerChoice())); */
+
+
+playRound(getPlayerChoice(), getComputerChoice());
