@@ -17,32 +17,6 @@ function getPlayerChoice() {
 }
 // Play a round of RPS
 
-/* function playRound(playerSelection, computerSelection) {
-    let winMessage = `Let's go!!! You won. ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)} beats ${computerSelection}.`;
-    let tieMessage = `Tie game!`;
-    let loseMessage = `Oh no, you lost this round. ${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)} beats ${playerSelection}.`;
-    let message
-    if (playerSelection === null || playerSelection === undefined) {
-        message = "Please enter one of the available values";
-    } else if (playerSelection === computerSelection) {
-        message = tieMessage;
-    } else if (playerSelection === "rock" && computerSelection === "paper") {
-        message = loseMessage;
-    } else if (playerSelection === "rock" && computerSelection === "scissors") {
-        message = winMessage;
-    } else if (playerSelection === "paper" && computerSelection === "rock") {
-        message = winMessage;
-    } else if (playerSelection === "paper" && computerSelection === "scissors") {
-        message = loseMessage;
-    } else if (playerSelection === "scissors" && computerSelection === "paper") {
-        message = winMessage;
-    } else if (playerSelection === "scissors" && computerSelection === "rock") {
-        message = loseMessage;
-    }
-    // console.log(message);
-    return message;
-} */
-
 function playRound(playerSelection, computerSelection) {
     let result;
     if (playerSelection === "" || playerSelection === null) {
@@ -65,19 +39,55 @@ function playRound(playerSelection, computerSelection) {
         result = "Please choose from the available options.";
     }
 
-    console.log(`Player selection: ${playerSelection}`);
-    console.log(`Computer selection: ${computerSelection}`);
-    console.log(`Result: ${result}`);
+    // console.log(`Player selection: ${playerSelection}`);
+    // console.log(`Computer selection: ${computerSelection}`);
+    // console.log(`Result: ${result}`);
     return result;
 }
+// Play Rock, Paper, Scissors! for 5 rounds and log the winner to the console.
 
-/* function game() {
+function game() {
    let playerScore = 0;
-   let computerScore = 0; 
-} */
+   let computerScore = 0;
+   let winner;
+   let outcome; 
+   for (let i = 0; i < 5; i++) {
+    outcome = playRound(getPlayerChoice(), getComputerChoice());
 
-/* game();
-console.log(playRound(getPlayerChoice(),getComputerChoice())); */
+    if (outcome === "lose") {
+        computerScore += 1;
+        console.log(`Computer Wins`);
+        console.log(`Computer: ${computerScore}`);
+        console.log(`Player: ${playerScore}`);
+    } else if (outcome === "win") {
+        playerScore += 1;
+        console.log(`Player Wins`);
+        console.log(`Computer: ${computerScore}`);
+        console.log(`Player: ${playerScore}`);
+    } else if (outcome === "tie") {
+        console.log(`Tie`);
+        console.log(`Computer: ${computerScore}`);
+        console.log(`Player: ${playerScore}`);
+    } else {
+        console.log(outcome);
+    }
+   }
+
+   winner = getWinner(playerScore, computerScore);
+   console.log(winner);
+}
+
+// Calculate winner for game() function.
+
+function getWinner(playerScore, computerScore) {
+    if (playerScore > computerScore) {
+        return `Player Wins: ${playerScore} - ${computerScore}`;
+    } else if (playerScore < computerScore) {
+        return `Computer Wins: ${computerScore} - ${playerScore}`;
+    } else {
+        return `Tie Game: ${computerScore} - ${playerScore}`
+    }
+}
+game();
 
 
-playRound(getPlayerChoice(), getComputerChoice());
